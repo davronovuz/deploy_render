@@ -1,5 +1,4 @@
 import time
-from idlelib.window import add_windows_to_menu
 from typing import Any,Awaitable,Callable,Dict
 from aiogram import BaseMiddleware
 from aiogram.types import Message
