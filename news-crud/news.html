@@ -80,6 +80,7 @@
     <textarea            id="description" placeholder="Matn"></textarea>
     <input type="text"   id="author"      placeholder="Muallif" />
     <button onclick="saqlash()">Saqlash</button>
+    <p id="xabar" style="text-align:center; margin-top:10px;"></p>
   </div>
 
   <div class="grid" id="grid"></div>
@@ -111,18 +112,27 @@
       const title       = document.getElementById('title').value;
       const description = document.getElementById('description').value;
       const author      = document.getElementById('author').value;
+      const xabar       = document.getElementById('xabar');
 
-      await fetch(id ? API + id + '/' : API, {
+      const res = await fetch(id ? API + id + '/' : API, {
         method: id ? 'PUT' : 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ title, description, author })
       });
 
-      document.getElementById('id').value          = '';
-      document.getElementById('title').value       = '';
-      document.getElementById('description').value = '';
-      document.getElementById('author').value      = '';
-      yuklash();
+      if (res.ok) {
+        xabar.style.color = 'green';
+        xabar.textContent = id ? 'Yangilandi!' : 'Qoshildi!';
+        document.getElementById('id').value          = '';
+        document.getElementById('title').value       = '';
+        document.getElementById('description').value = '';
+        document.getElementById('author').value      = '';
+        yuklash();
+      } else {
+        const xato = await res.json();
+        xabar.style.color = 'red';
+        xabar.textContent = 'Xato: ' + JSON.stringify(xato);
+      }
     }
 
     // Tahrirlash — formani to'ldirish
