@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Yangiliklar CRUD</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <div class="container">
+    <h1>Yangiliklar CRUD</h1>
+    <p class="api-url">API: <code>http://144.91.118.72:8080/api/v1/news/</code></p>
+
+    <!-- YARATISH FORMASI -->
+    <div class="card">
+      <h2 id="form-title">Yangilik qo'shish (POST)</h2>
+      <input type="hidden" id="edit-id" />
+      <input type="text" id="input-title" placeholder="Sarlavha" />
+      <textarea id="input-description" placeholder="Matn" rows="3"></textarea>
+      <input type="text" id="input-author" placeholder="Muallif" />
+      <div class="checkbox-row">
+        <input type="checkbox" id="input-published" checked />
+        <label for="input-published">Chop etilsin</label>
+      </div>
+      <div class="btn-row">
+        <button class="btn green" onclick="saveNews()">Saqlash</button>
+        <button class="btn gray" onclick="resetForm()">Bekor qilish</button>
+      </div>
+    </div>
+
+    <!-- RO'YXAT -->
+    <div class="card">
+      <div class="list-header">
+        <h2>Yangiliklar ro'yxati (GET)</h2>
+        <button class="btn blue" onclick="getNews()">Yangilash</button>
+      </div>
+      <div id="news-list">
+        <p class="hint">Ro'yxatni yuklash uchun "Yangilash" tugmasini bosing</p>
+      </div>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
